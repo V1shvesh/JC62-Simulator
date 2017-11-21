@@ -1,0 +1,23 @@
+{
+  "name": "jc62-simulator",
+  "version": "1.0.0",
+  "description": "A simulator of the JC62 CPU using Electron",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V1shvesh/JC62-Simulator.git"
+  },
+  "keywords": [
+    "electron",
+    "JC62"
+  ],
+  "author": "S. Vishvesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/V1shvesh/JC62-Simulator/issues"
+  },
+  "homepage": "https://github.com/V1shvesh/JC62-Simulator#readme"
+}
