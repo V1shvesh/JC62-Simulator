@@ -1,183 +1,111 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Photon</title>
+    <meta charset="utf-8">
+    <title>JC62 Simulator</title>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/photon.min.css">
-
-    <!-- Javascript -->
-    <script src="js/menu.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="./css/photon.min.css">
+    <link rel="stylesheet" type="text/css" href="./node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" type="text/css" href="./node_modules/codeflask/src/codeflask.css">
+    <link rel="stylesheet" type="text/css" href="./css/layout.css">
+    <link rel="stylesheet" type="text/css" href="./css/token.css">
   </head>
   <body>
     <div class="window">
-
-      <!-- .toolbar-header sits at the top of your app -->
       <header class="toolbar toolbar-header">
-        <h1 class="title">Photon</h1>
+        <h1 class="title">Simulator</h1>
       </header>
-
-      <!-- Your app's content goes inside .window-content -->
       <div class="window-content">
         <div class="pane-group">
-          <div class="pane pane-sm sidebar">
-            <nav class="nav-group">
-              <h5 class="nav-group-title">Favorites</h5>
-              <span class="nav-group-item">
-                <span class="icon icon-home"></span>
-                connors
-              </span>
-              <span class="nav-group-item active">
-                <span class="icon icon-light-up"></span>
-                Photon
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-download"></span>
-                Downloads
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-folder"></span>
-                Documents
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-window"></span>
-                Applications
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-signal"></span>
-                AirDrop
-              </span>
-              <span class="nav-group-item">
-                <span class="icon icon-monitor"></span>
-                Desktop
-              </span>
-            </nav>
+          <div id="editor-pane" class="pane pane-left">
+            <div class="tab-group">
+              <div class="tab-item active">
+                Editor
+              </div>
+              <div id="asmtab" class="tab-item">
+                Assembler
+              </div>
+            </div>
+            <form>
+              <div class="form-group">
+                <div id="editor" class="form-control code"></div>
+                <div class="btn-group editor-cmd">
+                  <button id="btn-assemble" class="btn btn-large btn-default">Assemble</button>
+                </div>
+              </div>
+            </form>
           </div>
-
-          <div class="pane">
-            <table class="table-striped">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Kind</th>
-                  <th>Date Modified</th>
-                  <th>Author</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>bars.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>base.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>button-groups.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>buttons.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>docs.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>forms.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>grid.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>icons.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>images.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>lists.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>mixins.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>navs.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>normalize.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>photon.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>tables.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>tabs.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>utilities.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-                <tr>
-                  <td>variables.scss</td>
-                  <td>Document</td>
-                  <td>Oct 13, 2015</td>
-                  <td>connors</td>
-                </tr>
-              </tbody>
-            </table>
+          <div id="assembler-pane" class="pane pane-left">
+            <div class="tab-group">
+              <div id="editab" class="tab-item">
+                  Editor
+              </div>
+              <div class="tab-item active">
+                  Assembler
+              </div>
+            </div>
+            <div class="data-title">
+              Instructions
+            </div>
+            <div class="instruction table">
+              <table class="table-striped">
+                <thead>
+                  <tr>
+                    <th>Memory Address</th>
+                    <th>Instruction</th>
+                    <th>HexCode</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+            <div class="btn-group">
+              <button id="btn-run" class="btn btn-large btn-default">Run</button>
+              <button id="btn-step" class="btn btn-large btn-default">Step</button>
+          </div>
+          </div>
+          <div id="cpu-pane" class="pane pane-right">
+            <div class="cpu-title">
+              CPU
+            </div>
+            <div class="data-title">
+              Memory
+            </div>
+            <div class="memory table">
+              <table class="table-striped">
+                <thead>
+                  <tr>
+                    <th>Memory Address</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+            <div class="data-title">
+              Registers and Flags
+            </div>
+            <div class="data-wrapper">
+              <span id="reg-A-label" class="reg-label">A</span>
+              <span id="reg-A" class="reg-data">000000000000</span>
+              <span id="reg-B-label" class="reg-label">B</span>
+              <span id="reg-B" class="reg-data">000000000000</span>
+              <span id="flag-N-label" class="flag-label">N</span>
+              <span id="flag-N" class="flag-data">0</span>
+            </div>
           </div>
         </div>
-      </div>
     </div>
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!-- Javascript -->
+    <script type="text/javascript" src="./node_modules/jquery/dist/jquery.js"></script>
+    <script>if (window.module) module = window.module;</script>
+    <script type="text/javascript" src="./node_modules/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="js/scroll.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
   </body>
 </html>

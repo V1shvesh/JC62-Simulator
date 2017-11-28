@@ -1,0 +1,20 @@
+code[class*="language-"],
+pre[class*="language-"] {
+	color: white;
+	text-shadow: none;
+}
+.CodeFlask__textarea{
+	cursor: text;
+}
+.token.instruction{
+	color: #66e;
+}
+.token.hex{
+	color: #e66;
+}
+.token.label{
+	color: limegreen;
+}
+.token.pseudo{
+	color: #e9e	
+}

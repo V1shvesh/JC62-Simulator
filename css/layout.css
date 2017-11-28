@@ -1,0 +1,149 @@
+.window{
+	background-color: silver;
+	font-family: Raleway;
+}
+.pane{
+	overflow-y: hidden;
+	border-left: 1px solid #989698;
+}
+.btn-large{
+	display: block;
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+}
+.code{
+	width: 80%;
+	height: 80vh;
+	display: block;
+	margin: 20px auto;
+	resize: none;
+	background-color: #444;
+	caret-color: white;
+}
+.editor-cmd{
+	display: block;
+	width: 80%;
+	height: 50px;
+	margin: 20px auto;
+}
+.editor-cmd .btn{
+	width: 100%;
+}
+
+.cpu-title{
+	width: 100%;
+	height: 26px;
+	background-image: linear-gradient(to bottom,#d4d2d4 0,#cccacc 100%);
+	text-align: center;
+	line-height: 25px;
+	border-bottom: 1px solid #989698;
+}
+
+.data-title{
+	width: 100%;
+	height: 26px;
+	background-color: #bbb;
+	text-align: center;
+	line-height: 25px;
+}
+#memory, 
+#assembler-pane{
+	display: none;
+}
+.table{
+	height: 40vh;
+	overflow-y: auto;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+.memory.table td,th{
+	width: 50%;
+	text-align: center;
+}
+.instruction.table td,th{
+	width: 33.33%;
+	text-align: center;
+}
+#assembler-pane .btn-group{
+	display: block;
+	width: 80%;
+	height: 50px;
+	margin: 20vh auto;
+}
+#assembler-pane .btn-group .btn{
+	display: block;
+	width: 50%;
+	height: 50px;
+	box-sizing: border-box;
+}
+.data-wrapper{
+	display: grid;
+	padding: 20px;
+	grid-template-rows: 30px 30px;
+	grid-template-columns: repeat(19,30px);
+	grid-row-gap: 30px;
+}
+.reg-label{
+	display: block;
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	font-size: 20px;
+	text-align: center;
+	line-height: 30px;
+}
+.flag-label{
+	display: block;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+	line-height: 30px;
+	grid-row-start: 2;
+	grid-column-start: 1; 
+}
+.reg-data{
+	display: inline-block;
+	width: 240px;
+	height: 30px;
+	padding: 0 3px;
+	text-align: center;
+	background-color: white;
+	box-sizing: border-box;
+	border: solid 1px black;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-kerning: none;
+	font-size: 30px;
+	line-height: 30px;
+}
+.flag-data{
+	display: block;
+	width: 30px;
+	height: 30px;	
+	padding: 0 6px;
+	text-align: center;
+	background-color: white;
+	box-sizing: border-box;
+	border: solid 1px black;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-kerning: none;
+	font-size: 30px;
+	line-height: 30px;
+}
+#reg-A{
+	grid-column-start: 2;
+}
+#reg-B-label{
+	grid-column: 11;
+}
+#reg-B{
+	grid-column-start: 12;
+}
+#flag-N{
+	grid-row: 2;
+	grid-column-start: 2;
+}
+.row-selected{
+	background-color: limegreen;
+	color: white;
+}

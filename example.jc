@@ -1,0 +1,9 @@
+#ORG 10h
+	LDA 20h
+	MBA
+	LDA 21h
+	ADD 
+	STA 22h
+	HLT
+#ORG 20h
+#DB 001 FFD

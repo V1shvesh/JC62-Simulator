@@ -1,43 +1,60 @@
-var app = require('app');  // Module to control application life.
-var BrowserWindow = require('browser-window');  // Module to create native browser window.
+const electronLocalshortcut = require('electron-localshortcut')
+const {app, BrowserWindow} = require('electron')
+const path = require('path')
+const url = require('url')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-var mainWindow = null;
+let win
 
-// Quit when all windows are closed.
-app.on('window-all-closed', function() {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform != 'darwin') {
-    app.quit();
-  }
-});
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-app.on('ready', function() {
+function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
-    width: 600,
-    height: 300,
-    'min-width': 500,
-    'min-height': 200,
-    'accept-first-mouse': true,
-    'title-bar-style': 'hidden'
-  });
+  win = new BrowserWindow({width: 800, height: 600, icon: __dirname+"/icon.png"})
+  win.setMenu(null)
 
   // and load the index.html of the app.
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  win.loadURL(url.format({
+    pathname: path.join(__dirname, 'index.html'),
+    protocol: 'file:',
+    slashes: true
+  }))
 
-  // Open the DevTools.
-  //mainWindow.openDevTools();
+  // DevTools shortcut
+  electronLocalshortcut.register(win, 'Ctrl+Shift+I', () => {
+    win.webContents.toggleDevTools()
+  })
+
+  electronLocalshortcut.register(win, 'F5', () => {
+    win.reload()
+  })
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
+  win.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    mainWindow = null;
-  });
-});
+    win = null
+  })
+}
+
+// This method will be called when Electron has finished
+// initialization and is ready to create browser windows.
+// Some APIs can only be used after this event occurs.
+app.on('ready', createWindow)
+
+// Quit when all windows are closed.
+app.on('window-all-closed', () => {
+  // On macOS it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
+
+app.on('activate', () => {
+  // On macOS it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (win === null) {
+    createWindow()
+  }
+})
