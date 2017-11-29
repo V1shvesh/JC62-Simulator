@@ -48,6 +48,7 @@ let showData = (data) => {
 	$('#reg-A').text(("00000000000"+A).slice(-12))
 	$('#reg-B').text(("00000000000"+B).slice(-12))
 	$('#flag-N').text(N)
+	return data
 }
 
 let resetData = (data) => {
@@ -264,6 +265,11 @@ let step = (data) =>{
 	return data
 }
 
+let stop = (data) => {
+	$('.instruction.table tr').removeClass("row-selected row-selected-hlt")
+	return data
+}
+
 $('document').ready(()=>{
 	
 	let codeText = ""
@@ -272,8 +278,10 @@ $('document').ready(()=>{
 		A: 0x000,
 		B: 0x000,
 		N: false,
-		pc: 0x00
+		pc: 0x00,
+		start: 0x00
 	}
+	let backup_data = {}
 	let flask = new CodeFlask
 	flask.run('#editor', {language: 'jc62', rtl: false})
 	flask.onUpdate((code) => {
@@ -290,7 +298,8 @@ $('document').ready(()=>{
 
 		cpu_data = assemble(codeText,cpu_data)
 		showData(cpu_data)
-		
+		backup_data = JSON.parse(JSON.stringify(cpu_data))
+
 		$('#asmtab').trigger('click')
 	})
 	$('#editab').click((e)=>{
@@ -310,5 +319,10 @@ $('document').ready(()=>{
 	})
 	$('#btn-step').click((e) => {
 		cpu_data = step(cpu_data)
+	})
+	$('#btn-stop').click((e) => {
+		console.log(backup_data)
+		stop(backup_data)
+		cpu_data = JSON.parse(JSON.stringify(backup_data))
 	})
 })
