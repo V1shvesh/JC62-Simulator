@@ -70,7 +70,7 @@ let addInstruction = (address,line,hex) => {
 	hex = ("00" + hex).slice(-3)
 
 	// Create a new Row
-	let row = "<tr>"
+	let row = "<tr id='"+address+"'>"
 	address = "<td>"+address+"</td>"
 	line = "<td>"+line+"</td>"
 	hex = "<td>"+hex+"</td>"
@@ -154,7 +154,6 @@ let assemble = (code,data) => {
 		})
 		if(!hltFlag)
 			throw "HLT instruction not found"
-		$('.instruction.table tbody tr:first-child').addClass("row-selected")
 	} catch(e) {
 		resetData(data)
 		console.log(e)
@@ -166,8 +165,11 @@ let assemble = (code,data) => {
 let run = (data) => {
 	try{
 		while(data.ram[data.pc] !== "FFF"){
+			$('.instruction.table tr').removeClass("row-selected")
+			$('#'+data.pc.toString(16).toUpperCase()).addClass("row-selected")
 			let opcode = Math.floor(parseInt(data.ram[data.pc],16)/256)
 			let address = parseInt(data.ram[data.pc],16)%256
+			data.pc++
 			//Swich Cases
 			switch(opcode){
 				// LDA
@@ -200,14 +202,67 @@ let run = (data) => {
 					data.pc = address-1
 				break
 			}
-			showData(data)
-			data.pc++
 		}
+		$('.instruction.table tr').removeClass("row-selected")
+		$('#'+data.pc.toString(16).toUpperCase()).addClass("row-selected-hlt")
+		showData(data)
 	} catch(e) {
 		console.log(e)
 	}
 	return data
 } 
+
+let step = (data) =>{
+	try{
+		if(data.ram[data.pc] === "FFF"){
+			$('.instruction.table tr').removeClass("row-selected")
+			$('#'+data.pc.toString(16).toUpperCase()).addClass("row-selected-hlt")
+			return data
+		}
+			
+		$('.instruction.table tr').removeClass("row-selected")
+		$('#'+data.pc.toString(16).toUpperCase()).addClass("row-selected")
+		let opcode = Math.floor(parseInt(data.ram[data.pc],16)/256)
+		let address = parseInt(data.ram[data.pc],16)%256
+		data.pc++
+		//Swich Cases
+		switch(opcode){
+			// LDA
+			case 1: 
+			data.A = data.ram[address]
+			break
+			case 2:
+			data.ram[address] = data.A
+			break
+			case 3:
+			data.B = data.A
+			break
+			case 4:
+			data.A = (data.A + data.B)%4096
+			if(data.A>0x7FF)
+				data.N = true
+			break
+			case 5:
+			let oprand = 0x800 - data.B
+			data.A = (data.A + oprand)%4096
+			console.log(data.A)
+			if(data.A>0x7FF)
+				data.N = true
+			break
+			case 6:
+			data.pc = address-1
+			break
+			case 7:
+			if(data.N)
+				data.pc = address-1
+			break
+		}
+		showData(data)
+	} catch(e) {
+		console.log(e)
+	}
+	return data
+}
 
 $('document').ready(()=>{
 	
@@ -250,7 +305,10 @@ $('document').ready(()=>{
 		if(e.ctrlKey&&e.charCode === 0&&e.keyCode === 13)
 			$('#btn-assemble').trigger('click')
 	})
-	$("#btn-run").click((e) => {
+	$('#btn-run').click((e) => {
 		cpu_data = run(cpu_data)
+	})
+	$('#btn-step').click((e) => {
+		cpu_data = step(cpu_data)
 	})
 })

@@ -143,7 +143,15 @@
 	grid-row: 2;
 	grid-column-start: 2;
 }
-.row-selected{
+tr:nth-child(odd).row-selected{
 	background-color: limegreen;
 	color: white;
+}
+tr:nth-child(even).row-selected{
+	background-color: green!important;
+	color: white;
+}
+.row-selected-hlt{
+	background-color: #a90000!important;
+	color: white;	
 }
