@@ -42,12 +42,14 @@ let showData = (data) => {
 			$('.memory.table tbody').append(row)
 		}
 	})
-	let A = data.A.toString(2).toUpperCase()
-	let B = data.B.toString(2).toUpperCase()
+	let A = data.A.toString(2)
+	let B = data.B.toString(2)
 	let N = data.N?"1":"0"
+	let PC = data.pc.toString(2)
 	$('#reg-A').text(("00000000000"+A).slice(-12))
 	$('#reg-B').text(("00000000000"+B).slice(-12))
 	$('#flag-N').text(N)
+	$('.pc-data').text(("0000000"+PC).slice(-8))
 	return data
 }
 
@@ -265,9 +267,8 @@ let step = (data) =>{
 	return data
 }
 
-let stop = (data) => {
+let stop = () => {
 	$('.instruction.table tr').removeClass("row-selected row-selected-hlt")
-	return data
 }
 
 $('document').ready(()=>{
@@ -322,7 +323,8 @@ $('document').ready(()=>{
 	})
 	$('#btn-stop').click((e) => {
 		console.log(backup_data)
-		stop(backup_data)
+		stop()
 		cpu_data = JSON.parse(JSON.stringify(backup_data))
+		showData(cpu_data)
 	})
 })

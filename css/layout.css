@@ -80,7 +80,7 @@
 	display: grid;
 	padding: 20px;
 	grid-template-rows: 30px 30px;
-	grid-template-columns: repeat(19,30px);
+	grid-template-columns: repeat(22,30px);
 	grid-row-gap: 30px;
 }
 .reg-label{
@@ -99,8 +99,18 @@
 	font-size: 20px;
 	text-align: center;
 	line-height: 30px;
-	grid-row-start: 2;
-	grid-column-start: 1; 
+	grid-row-start: 1;
+	grid-column-start: 21; 
+}
+.pc-label{
+	display: block;
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	font-size: 20px;
+	text-align: center;
+	line-height: 30px;
+	grid-row: 2;
 }
 .reg-data{
 	display: inline-block;
@@ -130,6 +140,22 @@
 	font-size: 30px;
 	line-height: 30px;
 }
+.pc-data{
+	display: inline-block;
+	width: 160px;
+	height: 30px;
+	padding: 0 3px;
+	text-align: center;
+	background-color: white;
+	box-sizing: border-box;
+	border: solid 1px black;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-kerning: none;
+	font-size: 30px;
+	line-height: 30px;
+	grid-row: 2;
+	grid-column-start: 2; 
+}
 #reg-A{
 	grid-column-start: 2;
 }
@@ -140,8 +166,8 @@
 	grid-column-start: 12;
 }
 #flag-N{
-	grid-row: 2;
-	grid-column-start: 2;
+	grid-row: 1;
+	grid-column-start: 22;
 }
 tr:nth-child(odd).row-selected{
 	background-color: limegreen;
@@ -152,6 +178,6 @@ tr:nth-child(even).row-selected{
 	color: white;
 }
 .row-selected-hlt{
-	background-color: #a90000!important;
+	background-color: #d00202!important;
 	color: white;	
 }
